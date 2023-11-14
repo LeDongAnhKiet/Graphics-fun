@@ -1,0 +1,77 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Dependency files
+*.d
+*.dep
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+
+# CodeBlocks
+*.depend
+
+# Eclipse
+.project
+.cproject
+.settings/
+
+# Qt
+*.qmake.stash
+*.pro.user
+*.pro.user.*
+*.qbs.user
+*.qbs.user.*
+
+# Visual Studio Code
+.vscode/
+.idea/
+
+# Visual Studio
+*.sdf
+*.opensdf
+*.suo
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.vcxproj.backup
+*.vcproj
+*.vcproj.*
+
+# Xcode
+*.xcworkspace/
+*.xcuserdatad/
+*.xcodeproj/
+
+# Temporary and build folders
+temp/
+build/
+
+# Logs
+*.log
+
+# Configurations
+*.iml
+.DS_Store
