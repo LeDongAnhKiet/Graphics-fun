@@ -66,10 +66,10 @@ int main()
             for (float Y = -canh; Y < canh; Y += tocDo)
             {
                 beMat(X, Y, -canh, '@');
-                beMat(canh, Y, X, '$');
-                beMat(-canh, Y, -X, '~');
-                beMat(-X, Y, canh, '#');
-                beMat(X, -canh, -Y, ';');
+                beMat(canh, Y, X, '#');
+                beMat(-canh, Y, -X, '$');
+                beMat(-X, Y, canh, '%');
+                beMat(X, -canh, -Y, '&');
                 beMat(X, canh, Y, '+');
             }
 
@@ -80,10 +80,10 @@ int main()
             for (float Y = -canh; Y < canh; Y += tocDo)
             {
                 beMat(X, Y, -canh, '@');
-                beMat(canh, Y, X, '$');
-                beMat(-canh, Y, -X, '~');
-                beMat(-X, Y, canh, '#');
-                beMat(X, -canh, -Y, ';');
+                beMat(canh, Y, X, '#');
+                beMat(-canh, Y, -X, '$');
+                beMat(-X, Y, canh, '%');
+                beMat(X, -canh, -Y, '&');
                 beMat(X, canh, Y, '+');
             }
 
@@ -94,10 +94,10 @@ int main()
             for (float Y = -canh; Y < canh; Y += tocDo)
             {
                 beMat(X, Y, -canh, '@');
-                beMat(canh, Y, X, '$');
-                beMat(-canh, Y, -X, '~');
-                beMat(-X, Y, canh, '#');
-                beMat(X, -canh, -Y, ';');
+                beMat(canh, Y, X, '#');
+                beMat(-canh, Y, -X, '$');
+                beMat(-X, Y, canh, '%');
+                beMat(X, -canh, -Y, '&');
                 beMat(X, canh, Y, '+');
             }
 
