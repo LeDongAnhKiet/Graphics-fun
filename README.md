@@ -1,0 +1,1 @@
+# Hãy tự tạo project, env cho C++ để các file .cpp chạy.

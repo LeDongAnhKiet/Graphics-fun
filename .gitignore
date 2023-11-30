@@ -75,4 +75,6 @@ build/
 # Configurations
 *.iml
 .DS_Store
-x64/
+x64
+.vs
+*.sln
