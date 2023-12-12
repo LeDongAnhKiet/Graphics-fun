@@ -10,58 +10,41 @@ class WindowManager
 	constructor ()
 	{
 		let that = this;
-
+		// Xử lý event khi localStorage được thay đổi từ một cửa sổ khác
 		addEventListener("storage", (event) => 
 		{
-			//console.log(event)
 			if (event.key == "windows")
 			{
 				let newWindows = JSON.parse(event.newValue);
 				let winChange = that.#didWindowsChange(that.#windows, newWindows);
-
 				that.#windows = newWindows;
-
-				if (winChange)
-				{
-					//console.log("change");
-					//console.log("windows", that.#windows);
-					//console.log("newWindows", newWindows);
-					if (that.#winChangeCallback) that.#winChangeCallback();
-				}
+				if (winChange && that.#winChangeCallback) that.#winChangeCallback();
 			}
-
-			//console.log(that.#windows);
 		});
-
+		// Xử lý event khi cửa sổ hiện tại sắp đóng
 		window.addEventListener('beforeunload', function (e) 
 		{
 			let index = that.getWindowIndexFromId(that.#id);
-
+			// Xóa cửa sổ và cập nhật localStorage
 			that.#windows.splice(index, 1);
 			that.updateWindowsLocalStorage();
 		});
 	}
 
+	// Kiểm tra xem có bất kỳ thay đổi nào đối với list cửa sổ
 	#didWindowsChange (pWins, nWins)
 	{
-		if (pWins.length != nWins.length)
-		{
-			return true;
-		}
-		else
-		{
+		if (pWins.length != nWins.length) return true;
+
+		else {
 			let c = false;
-
 			for (let i = 0; i < pWins.length; i++)
-			{
 				if (pWins[i].id != nWins[i].id) c = true;
-			}
-
 			return c;
 		}
 	}
 
-
+	// khởi tạo cửa sổ hiện tại (thêm metadata tùy chỉnh để lưu trữ vào từng phiên bản cửa sổ)
 	init (metaData)
 	{
 		this.#windows = JSON.parse(localStorage.getItem("windows")) || [];

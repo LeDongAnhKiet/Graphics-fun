@@ -40,6 +40,7 @@ else {
 
 	function init ()
 	{
+		initialized = true;
 		// thêm thời gian chờ vì window.offsetX lấy giá trị sai trước một khoảng thời gian ngắn 
 		setTimeout(() => {
 			setupScene();
@@ -74,7 +75,7 @@ else {
 		cubes.forEach((c) => { world.remove(c); })
 		cubes = [];
 
-		// Thêm đối tượng mới
+		// Thêm đối tượng mới trong cửa sổ hiện tại
 		for (let i = 0; i < wins.length; i++)
 		{
 			let win = wins[i];
@@ -93,6 +94,7 @@ else {
 
 	function updateWindowShape (easing = true)
 	{
+		// Lưu trữ offset thực tế trong proxy khi cập nhật trong hàm render
 		sceneOffsetTarget = {x: -window.screenX, y: -window.screenY};
 		if (!easing) sceneOffset = sceneOffsetTarget;
 	}
@@ -109,7 +111,7 @@ else {
 		scene.add( camera );
 		renderer = new t.WebGLRenderer({antialias: true, depthBuffer: true});
 		renderer.setPixelRatio(pixR);
-	    
+
 	  	world = new t.Object3D();
 		scene.add(world);
 		renderer.domElement.setAttribute("id", "scene");
@@ -121,14 +123,17 @@ else {
 		let t = getTime();
 		windowManager.update();
 
+		// Tính vị trí mới dựa trên delta giữa offset hiện tại và offset mới nhân với giá trị falloff tạo smooth effect
 		let falloff = .05;
 		sceneOffset.x = sceneOffset.x + ((sceneOffsetTarget.x - sceneOffset.x) * falloff);
 		sceneOffset.y = sceneOffset.y + ((sceneOffsetTarget.y - sceneOffset.y) * falloff);
 
+		// Gán offset vào world
 		world.position.x = sceneOffset.x;
 		world.position.y = sceneOffset.y;
 		let wins = windowManager.getWindows();
 
+		// lặp qua tất cả các hình và cập nhật vị trí dựa trên vị trí cửa sổ hiện tại
 		for (let i = 0; i < cubes.length; i++)
 		{
 			let cube = cubes[i];
@@ -146,6 +151,7 @@ else {
 		requestAnimationFrame(render);
 	}
 
+	// Thay đổi kích thước render phù hợp với kích thước cửa sổ
 	function resize ()
 	{
 		let width = window.innerWidth;
