@@ -1,4 +1,4 @@
-const cube = document.querySelector('.cube');
+const cube = document.querySelector('.cuboid');
 let isDragging = false;
 let lastX, lastY;
 let rotX = 0, rotY = 0;

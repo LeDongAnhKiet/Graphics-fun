@@ -1,7 +1,7 @@
 :root {
-    --edge: 200px;
-    --fontsize: calc(var(--edge) / 5);
-    --translate: calc(var(--edge) / 2);
+    --height: 250px;
+    --width: 400px;
+    --length: 500px;
 }
 
 body {
@@ -17,12 +17,12 @@ body {
 }
 
 .scene {
-    width: var(--edge);
-    height: var(--edge);
+    width: var(--length);
+    height: var(--height);
     perspective: 1000px;
 }
 
-.cube {
+.cuboid {
     position: relative;
     transform-style: preserve-3d;
     transform: rotateX(-20deg) rotateY(-20deg);
@@ -31,21 +31,38 @@ body {
 
 .face {
     position: absolute;
-    width: var(--edge);
-    height: var(--edge);
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: var(--fontsize);
+    background: 
+        repeating-linear-gradient(to right, rgba(255,255,255,0.2) 0px, rgba(255,255,255,0.2) 49px, transparent 50px),
+        repeating-linear-gradient(to bottom, rgba(255,255,255,0.2) 0px, rgba(255,255,255,0.2) 49px, transparent 50px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     color: white;
     user-select: none;
 }
 
-.front  { transform: rotateY(0deg)      translateZ(var(--translate)); }
-.back   { transform: rotateY(180deg)    translateZ(var(--translate)); }
-.left   { transform: rotateY(-90deg)    translateZ(var(--translate)); }
-.right  { transform: rotateY(90deg)     translateZ(var(--translate)); }
-.up     { transform: rotateX(90deg)     translateZ(var(--translate)); }
-.down   { transform: rotateX(-90deg)    translateZ(var(--translate)); }
+/* Kích thước các mặt */
+.front, .back {
+    width: var(--length);
+    height: var(--height);
+    font-size: calc((var(--length) + var(--height)) / 10);
+}
+.left, .right {
+    width: var(--width);
+    height: var(--height);
+    font-size: calc((var(--width) + var(--height)) / 10);
+}
+.up, .down {
+    width: var(--length);
+    height: var(--width);
+    font-size: calc((var(--length) + var(--width)) / 10);
+}
+
+/* Vị trí các mặt */
+.front  { transform: translateZ(calc(var(--width) / 2)); }
+.back   { transform: rotateY(180deg)    translateZ(calc(var(--width) / 2)); }
+.left   { transform: rotateY(-90deg)    translateZ(calc(var(--width) / 2)); }
+.right  { transform: rotateY(90deg)     translateZ(calc(var(--length) - (var(--width) / 2))); }
+.up     { transform: rotateX(90deg)     translateZ(calc(var(--width) / 2)); }
+.down   { transform: rotateX(-90deg)    translateZ(calc(var(--height) - (var(--width) / 2))); }
